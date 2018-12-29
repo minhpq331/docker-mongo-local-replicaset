@@ -43,17 +43,16 @@ fi
 
 echo "WRITING KEYFILE"
 
-openssl rand -base64 741 > /var/mongo_keyfile
-chown mongodb /var/mongo_keyfile
-chmod 600 /var/mongo_keyfile
+openssl rand -base64 741 > /data/mongo_keyfile
+chmod 600 /data/mongo_keyfile
 
 echo "STARTING CLUSTER"
 
-mongod --bind_ip_all --port 27003 --smallfiles --dbpath /data/db3 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
+mongod --bind_ip_all --port 27003 --smallfiles --dbpath /data/db3 --auth --replSet rs0 --keyFile /data/mongo_keyfile  &
 DB3_PID=$!
-mongod --bind_ip_all --port 27002 --smallfiles --dbpath /data/db2 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
+mongod --bind_ip_all --port 27002 --smallfiles --dbpath /data/db2 --auth --replSet rs0 --keyFile /data/mongo_keyfile  &
 DB2_PID=$!
-mongod --bind_ip_all --port 27001 --smallfiles --dbpath /data/db1 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
+mongod --bind_ip_all --port 27001 --smallfiles --dbpath /data/db1 --auth --replSet rs0 --keyFile /data/mongo_keyfile  &
 DB1_PID=$!
 
 waitForMongo 27001 $USERNAME $PASSWORD
