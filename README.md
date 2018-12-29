@@ -1,5 +1,7 @@
 # MongoDB Local ReplicaSet
 
+**My forked version of this repository to update mongo version to 4.0**
+
 Sometimes you need a replica set in your local environment (perhaps you want to use the oplog). But it's somewhat involved to spin up a series of mongo containers and provide the correct configuration. This docker image will create a self-contained 3 node replica set (that is, all three nodes are running in one container).
 
 **THIS IS ONLY USEFUL FOR LOCAL DEVELOPMENT**
